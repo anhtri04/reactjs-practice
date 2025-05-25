@@ -1,66 +1,47 @@
-import { useState, useEffect } from 'react';
-import './App.css';
+import React, { Component } from 'react';
+import Title from './components/Title';
+import Search from './components/Search';
+import Sort from './components/Sort';
+import Form from './components/Form';
+import ListItem from './components/ListItem';
+import Items from './mockdata/Items';
 
-function App() {
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
+class App extends Component {
 
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    setTasks(storedTasks);
-  }, []);
+    constructor(props) {    
+    super(props);
+    this.state = {
+        items: Items
+    }
+}
+    renderItem = () => {
+    return(111);
+}
 
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
-
-  const handleAddTask = () => {
-    if (newTask.trim() === '') return;
-    setTasks([...tasks, { text: newTask, completed: false }]);
-    setNewTask('');
-  };
-
-  const handleDeleteTask = (index) => {
-    setTasks(tasks.filter((_, i) => i !== index));
-  };
-
-  const handleToggleComplete = (index) => {
-    setTasks(
-      tasks.map((task, i) =>
-        i === index ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
-
-  return (
-    <div>
-      <h1>To-Do App</h1>
-      <div>
-        <input
-          type="text"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          placeholder="Add a new task"
-        />
-        <button onClick={handleAddTask}>Add Task</button>
-      </div>
-      <ul>
-        {tasks.map((task, index) => (
-          <li
-            key={index}
-            style={{
-              textDecoration: task.completed ? 'line-through' : 'none',
-            }}
-          >
-            <span onClick={() => handleToggleComplete(index)}>
-              {task.text}
-            </span>
-            <button onClick={() => handleDeleteTask(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    render() {
+        return (
+            <div className="container">
+                <Title />
+                <div className="row">
+                    <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <Search />
+                    </div>
+                    <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <Sort />
+                    </div>
+                    <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                        <button type="button" className="btn btn-info btn-block marginB10">Add Item</button>
+                    </div>
+                </div>
+                <div className="row marginB10">
+                    <div className="col-md-offset-7 col-md-5">
+                        <Form />
+                    </div>
+                </div>
+                <ListItem/>
+            </div>
+        );
+    }
 }
 
 export default App;

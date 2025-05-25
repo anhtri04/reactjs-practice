@@ -1,11 +1,21 @@
-import MovieCard from './components/MovieCard'
-import './App.css'
+
+import './css/App.css'
+import Favorites from './pages/Favorites'
+import Home from './pages/Home'
+import { Routes, Route } from 'react-router-dom'
+import NavBar from "./components/NavBar";
 
 function App() {
   
   return (
     <div>
-      <MovieCard movie = {{title:"John Weak 4", release_date:"31/02/2026"}}/>
+      <NavBar />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={ <Home />} />
+          <Route path="/favorites" element={ <Favorites />} />
+        </Routes>
+      </main>
     </div>
   )
 }
