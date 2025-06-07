@@ -1,17 +1,30 @@
 
-import Card from './Card.jsx'
+import Student from './Student.jsx'
 
 
 function App() {
   return(
     <>
-      
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      
+      <Student 
+        name="AnhTri" 
+        age={21}  
+        isStudent={true}
+      />
+      <Student 
+        name="AnhTri" 
+        age={21}  
+        isStudent={true}
+      />
+      <Student 
+        name="AnhTri" 
+        age={21}  
+        isStudent={true}
+      />
+      <Student 
+        name="AnhTri" 
+        age={21}  
+        isStudent={true}
+      />
     </>
   );
 }
